@@ -1,12 +1,13 @@
 domReady( function () {
 
 	var FormHandler = function ( el ) {
-		var labelElement    = el.getElementsByClassName( "md-input-label" )[ 0 ];
-		this.__inputElement = document.getElementById( labelElement.getAttribute( "for" ) );
+		this.__labelElement = el.getElementsByClassName( "md-input-label" )[ 0 ];
+		this.__inputElement = document.getElementById( this.__labelElement.getAttribute( "for" ) );
 	}
 
 	FormHandler.prototype.init = function FormHandler$init() {
 		var self = this;
+		self.handleChange();
 		self.__inputElement.addEventListener( "change", function () {
 			self.handleChange()
 		} );
@@ -14,17 +15,18 @@ domReady( function () {
 
 	FormHandler.prototype.handleChange = function FormHandler$handleChange() {
 		var self = this;
-		if ( (self.__inputElement === document.activeElement) || self.__inputElement.placeholder || self.__inputElement.value ) {
-			console.log( "add active to: " + inputElement );
+		if ( (self.__inputElement === document.activeElement) || self.__inputElement.placeholder !== "" || self.__inputElement.value !== "" ) {
+			self.__labelElement.classList.add( "active" );
 		} else {
-			console.log( "remove active from: " + inputElement );
+			self.__labelElement.classList.remove( "active" );
 		}
 	};
 
 	var inputGroups = document.getElementsByClassName( "md-input-group" );
 	if ( inputGroups ) {
 		[].forEach.call( inputGroups, function ( el ) {
-			new FormHandler( el );
+			var formHandler = new FormHandler( el );
+			formHandler.init();
 		} );
 	}
 } );
