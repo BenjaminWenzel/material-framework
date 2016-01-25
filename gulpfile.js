@@ -15,7 +15,7 @@ var plumber      = require( "gulp-plumber" );
 
 function cleanCss() {
 	return gulp
-			.src( "*.css", { cwd: "css" } )
+			.src( "*.css", { cwd: "" } )
 			.pipe( vinylPaths( del ) );
 }
 
@@ -31,12 +31,12 @@ function buildCss() {
 			.pipe( cssnano( { zindex: false } ) )
 			.pipe( rename( { extname: ".min.css" } ) )
 			.pipe( sourcemaps.write( "maps" ) )
-			.pipe( gulp.dest( "css" ) );
+			.pipe( gulp.dest( "" ) );
 }
 
 function cleanJs() {
 	return gulp
-			.src( "*.js", { cwd: "js" } )
+			.src( "*.js", { cwd: "" } )
 			.pipe( vinylPaths( del ) );
 }
 
@@ -59,7 +59,7 @@ function buildJs() {
 			.pipe( concat( "material-framework.js", { newLine: ";" } ) )
 			.pipe( rename( { extname: ".min.js" } ) )
 			.pipe( sourcemaps.write( "maps" ) )
-			.pipe( gulp.dest( "js" ) );
+			.pipe( gulp.dest( "" ) );
 }
 
 function customWatchers() {
