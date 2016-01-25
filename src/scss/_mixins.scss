@@ -1,0 +1,16 @@
+//== Global mixins
+//
+//##
+@mixin transition($property, $seconds, $speed: ease) {
+	transition         : $property $seconds $speed;
+	-webkit-transition : $property $seconds $speed;
+	-o-transition      : $property $seconds $speed;
+	-moz-transition    : $property $seconds $speed;
+}
+
+@mixin vertical-gradient($colorStops...) {
+	background : nth(nth($colorStops, 1), 1);
+	background : -moz-linear-gradient(top, $colorStops);
+	background : -webkit-linear-gradient(top, $colorStops);
+	background : linear-gradient(to bottom, $colorStops);
+}

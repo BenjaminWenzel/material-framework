@@ -1,0 +1,32 @@
+{
+  "name": "material-framework",
+  "version": "1.0.0",
+  "description": "material framework =========",
+  "main": "index.js",
+  "author": "Benjamin Wenzel <benjamin.wenzel@mail.de>",
+  "license": "UNLICENSED",
+  "homepage": "https://bitbucket.org/BenjaminWenzel/material-framework",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/BenjaminWenzel/material-framework.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cached": "^1.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.0.0",
+    "gulp-order": "^1.1.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-remember": "^0.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "vinyl-paths": "^2.1.0"
+  }
+}

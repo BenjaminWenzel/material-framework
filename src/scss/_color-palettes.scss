@@ -1,0 +1,108 @@
+$__md_color_count : 5;
+$__md_color_factor : 8.38;
+
+@function __md_color-darken($color, $value) {
+	$__result : darken($color, $__md_color_factor * $value);
+	$__result : desaturate($__result, $__md_color_factor * $value);
+	@return $__result;
+}
+
+@function __md_color-lighten($color, $value) {
+	$__result : lighten($color, $__md_color_factor * $value);
+	$__result : saturate($__result, $__md_color_factor * $value);
+	@return $__result;
+}
+
+@function __md_getDarkenColors($base) {
+	$result : ();
+	@for $i from 1 through $__md_color_count {
+		$result : append($result, __md_color-darken($base, $i));
+	}
+	@return $result;
+}
+
+@function __md_getLightenColors($base) {
+	$result : ();
+	@for $i from 1 through $__md_color_count {
+		$result : append($result, __md_color-lighten($base, $i));
+	}
+	@return $result;
+}
+
+@function __md_getColorMap() {
+	$result : ();
+	@each $colorName, $colorValue in $__md_colors {
+		$result : map-merge($result, ($colorName:(
+				base: $colorValue,
+				darken: __md_getDarkenColors($colorValue),
+				lighten: __md_getLightenColors($colorValue)
+		)))
+	}
+	@return $result;
+}
+
+$__md_colors : (
+		red: #F44336,
+		pink: #E91E63,
+		purple: #9C27B0,
+		deep-purple: #673AB7,
+		indigo: #3F51B5,
+		blue: #2196F3,
+		light-blue: #03A9F4,
+		cyan: #00BCD4,
+		teal: #009688,
+		green: #4CAF50,
+		light-green: #8BC34A,
+		lime: #CDDC39,
+		yellow: #FFEB3B,
+		amber: #FFC107,
+		orange: #FF9800,
+		deep-orange: #FF5722,
+		brown: #795548,
+		grey: #9E9E9E,
+		blue-grey: #607D8B
+);
+
+$__md_colorMap : __md_getColorMap();
+
+@each $colorName, $colorData in $__md_colorMap {
+	.md-#{$colorName} {
+		background-color : map_get($colorData, base) !important;
+		@for $i from 1 through $__md_color_count {
+			&.lighten-#{$i} {
+				background-color : nth(map_get($colorData, lighten), $i) !important;
+			}
+			&.darken-#{$i} {
+				background-color : nth(map_get($colorData, darken), $i) !important;
+			}
+		}
+	}
+	.md-#{$colorName}-text {
+		color : map_get($colorData, base) !important;
+		@for $i from 1 through $__md_color_count {
+			&.text-lighten-#{$i} {
+				color : nth(map_get($colorData, lighten), $i) !important;
+			}
+			&.text-darken-#{$i} {
+				color : nth(map_get($colorData, darken), $i) !important;
+			}
+		}
+	}
+}
+
+@function mdGetColor($color) {
+	$colorMap : map_get($__md_colorMap, $color);
+	@return map_get($colorMap, base);
+}
+
+@function mdGetLightColor($color,$value) {
+	$colorMap : map_get($__md_colorMap, $color);
+	$colorList : map_get($colorMap, lighten);
+	@return nth($colorList, $value);
+}
+
+@function mdGetDarkColor($color,$value) {
+	$colorMap : map_get($__md_colorMap, $color);
+	$colorList : map_get($colorMap, darken);
+	@return nth($colorList, $value);
+}
