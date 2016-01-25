@@ -36,7 +36,10 @@ function buildCss() {
 
 function cleanJs() {
 	return gulp
-			.src( "*.js", { cwd: "" } )
+			.src( [
+				      "*.js",
+				      "!gulpfile.js"
+			      ], { cwd: "" } )
 			.pipe( vinylPaths( del ) );
 }
 
