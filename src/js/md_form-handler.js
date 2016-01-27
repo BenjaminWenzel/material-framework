@@ -26,13 +26,13 @@ FormHandler.prototype.init = function FormHandler$init() {
 FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
 	var self = this;
 
-	var input  = self.__inputElement.value.split(/\r\n|\r|\n/g);
+	var input  = self.__inputElement.value.split( /\r\n|\r|\n/g );
 	var hidden = document.getElementById( self.__inputElement.id + "-clone" );
 
 	hidden.innerHTML = "";
 
 	[].forEach.call( input, function ( e ) {
-		hidden.innerHTML = hidden.innerHTML + "\"" + e + "\"<br/>";
+		hidden.innerHTML = hidden.innerHTML + e + "<br/>";
 	} );
 
 	hidden.style.height              = "auto";
