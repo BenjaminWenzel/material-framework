@@ -32,7 +32,7 @@ FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
 	hidden.innerHTML = "";
 
 	[].forEach.call( input, function ( e ) {
-		hidden.innerHTML = hidden.innerHTML + e + "<br/>";
+		hidden.innerHTML = hidden.innerHTML + e.outerHTML + "<br/>";
 	} );
 
 	hidden.style.height              = "auto";
