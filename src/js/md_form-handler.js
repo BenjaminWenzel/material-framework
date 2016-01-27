@@ -9,7 +9,18 @@ FormHandler.prototype.init = function FormHandler$init() {
 	self.__inputElement.addEventListener( "change", function () {
 		self.handleChange()
 	} );
+	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
+		self.updateTextarea();
+
+		self.__inputElement.addEventListener( "input", self.updateTextarea() );
+	}
 };
+
+FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
+	var self = this;
+
+	console.log( self.__inputElement );
+}
 
 FormHandler.prototype.handleChange = function FormHandler$handleChange() {
 	var self = this;
