@@ -12,7 +12,9 @@ FormHandler.prototype.init = function FormHandler$init() {
 	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
 		self.updateTextarea();
 
-		self.__inputElement.addEventListener( "input", self.updateTextarea() );
+		self.__inputElement.addEventListener( "input", function () {
+			self.updateTextarea();
+		} );
 	}
 };
 
