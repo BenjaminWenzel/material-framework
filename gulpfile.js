@@ -12,15 +12,45 @@ var sourcemaps   = require( "gulp-sourcemaps" );
 var vinylPaths   = require( "vinyl-paths" );
 var del          = require( "del" );
 var plumber      = require( "gulp-plumber" );
+var browserify   = require( "browserify" );
+var source       = require( 'vinyl-source-stream' );
+var buffer       = require( 'vinyl-buffer' );
 
+var cssOutputDirectory = "";
+var jsOutputDirectory  = "";
+
+/**
+ * Removes css files from output directory
+ *
+ * @returns {*}
+ */
 function cleanCss() {
 	return gulp
-			.src( "*.css", { cwd: "" } )
+			.src( "*.css", { cwd: cssOutputDirectory } )
 			.pipe( vinylPaths( del ) );
 }
 
+/**
+ * Removes js files from output directory
+ *
+ * @returns {*}
+ */
+function cleanJs() {
+	return gulp
+			.src( [
+				      "*.js",
+				      "!gulpfile.js"
+			      ], { cwd: jsOutputDirectory } )
+			.pipe( vinylPaths( del ) );
+}
+
+/**
+ * Builds the css files
+ *
+ * @returns {*}
+ */
 function buildCss() {
-	gulp.src(
+	return gulp.src(
 			[
 				"src/scss/material-framework.scss"
 			] )
@@ -31,38 +61,26 @@ function buildCss() {
 			.pipe( cssnano( { zindex: false } ) )
 			.pipe( rename( { extname: ".min.css" } ) )
 			.pipe( sourcemaps.write( "maps" ) )
-			.pipe( gulp.dest( "" ) );
+			.pipe( gulp.dest( cssOutputDirectory ) );
 }
 
-function cleanJs() {
-	return gulp
-			.src( [
-				      "*.js",
-				      "!gulpfile.js"
-			      ], { cwd: "" } )
-			.pipe( vinylPaths( del ) );
-}
-
+/**
+ *
+ */
 function buildJs() {
-	gulp.src(
-			[
-				"src/js/material-framework.js",
-				"src/js/**/*.js"
-			] )
+	return browserify(
+			{
+				entries: [ "src/js/material-framework.js" ]
+			} )
+			.bundle()
+			.pipe( source( "material-framework.js" ) )
+			.pipe( buffer() )
 			.pipe( plumber() )
-			.pipe( cached( "js" ) )
 			.pipe( sourcemaps.init() )
-			.pipe( order(
-					[
-						"material-framework.js",
-						"**/*.js"
-					], { base: "src/js" } ) )
 			.pipe( uglify() )
-			.pipe( remember( "js" ) )
-			.pipe( concat( "material-framework.js", { newLine: ";" } ) )
 			.pipe( rename( { extname: ".min.js" } ) )
 			.pipe( sourcemaps.write( "maps" ) )
-			.pipe( gulp.dest( "" ) );
+			.pipe( gulp.dest( jsOutputDirectory ) );
 }
 
 function customWatchers() {
