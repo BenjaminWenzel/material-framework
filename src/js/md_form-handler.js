@@ -29,6 +29,8 @@ FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
 	var input  = self.__inputElement.value.split( "\n" );
 	var hidden = document.getElementById( self.__inputElement.id + "-clone" );
 
+	hidden.innerHTML = "";
+
 	[].forEach.call( input, function ( e ) {
 		hidden.innerHTML = hidden.innerHTML + "\"" + e + "\"<br/>";
 	} );
