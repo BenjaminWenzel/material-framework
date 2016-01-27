@@ -26,9 +26,14 @@ FormHandler.prototype.init = function FormHandler$init() {
 FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
 	var self = this;
 
-	var hidden                       = document.getElementById( self.__inputElement.id + "-clone" );
+	var input  = self.__inputElement.value.split( "\n" );
+	var hidden = document.getElementById( self.__inputElement.id + "-clone" );
+
+	[].forEach.call( input, function ( e ) {
+		hidden.innerHTML = hidden.innerHTML + "\"" + e + "\"<br/>";
+	} );
+
 	hidden.style.height              = "auto";
-	hidden.innerHTML                 = self.__inputElement.value.replace( /\n/g, "<br>" ) + "<br>";
 	hidden.style.display             = "block";
 	self.__inputElement.style.height = hidden.offsetHeight + "px";
 	hidden.style.display             = "none";
