@@ -1,11 +1,17 @@
 var Parallax    = require( "./md_parallax" );
 var FormHandler = require( "./md_form-handler" );
+var DataTable   = require( "./md_data-table" );
 
 var MaterialFramework = function () {
 };
 
 MaterialFramework.prototype.ready = function MaterialFramework$ready( callback ) {
 	document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener( "DOMContentLoaded", callback );
+};
+
+MaterialFramework.prototype.dataTable = function MaterialFramework$dataTable( s ) {
+	var table = new DataTable( s );
+	table.init();
 };
 
 window.mfw = mfw = new MaterialFramework();
