@@ -10,6 +10,11 @@ FormHandler.prototype.init = function FormHandler$init() {
 		self.handleChange()
 	} );
 	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
+		var hidden = document.createElement( "div" );
+		hidden.classList.add( "md-hidden-textarea" );
+		hidden.id = self.__inputElement.id + "-clone";
+		self.__inputElement.parentNode.appendChild( hidden );
+
 		self.updateTextarea();
 
 		self.__inputElement.addEventListener( "input", function () {
@@ -21,7 +26,12 @@ FormHandler.prototype.init = function FormHandler$init() {
 FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
 	var self = this;
 
-	console.log( self.__inputElement );
+	var hidden                       = document.getElementById( self.__inputElement.id + "-clone" );
+	hidden.style.height              = "auto";
+	hidden.innerHTML                 = self.__inputElement.value.replace( /\n/g, "<br>" ) + "<br>";
+	hidden.style.display             = "block";
+	self.__inputElement.style.height = hidden.offsetHeight + "px";
+	hidden.style.display             = "none";
 }
 
 FormHandler.prototype.handleChange = function FormHandler$handleChange() {
