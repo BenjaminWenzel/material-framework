@@ -10,9 +10,9 @@ table.md-data-table {
 
 			th {
 				border-bottom : 1px solid #111111;
-				text-align   : left;
-				padding-left : 20px;
-				font-weight  : 700;
+				text-align    : left;
+				padding-left  : 20px;
+				font-weight   : 700;
 
 				&:after {
 					float       : right;
@@ -85,6 +85,14 @@ table.md-data-table {
 				vertical-align : top;
 				padding        : 6px 10px;
 				border-top     : 1px solid #DDDDDD;
+			}
+
+			a {
+				color : inherit;
+
+				&:hover {
+					text-decoration : none;
+				}
 			}
 		}
 	}
