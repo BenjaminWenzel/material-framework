@@ -1227,7 +1227,8 @@ i.right {
   clear: both; }
 
 .disabled {
-  color: #e6d6d6; }
+  color: #e6d6d6 !important;
+  cursor: not-allowed !important; }
 
 .md-flash-message {
   border-radius: 2px;
@@ -1253,6 +1254,41 @@ i.right {
     color: #ffef66; }
   .md-flash-message.error {
     color: #8c261e; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  line-height: 1.1;
+  color: #03A9F4; }
+
+h1 {
+  font-size: 4.2rem;
+  line-height: 110%;
+  margin: 2.1rem 0 1.68rem 0; }
+
+h2 {
+  font-size: 3.56rem;
+  line-height: 110%;
+  margin: 1.78rem 0 1.424rem 0; }
+
+h3 {
+  font-size: 2.92rem;
+  line-height: 110%;
+  margin: 1.46rem 0 1.168rem 0; }
+
+h4 {
+  font-size: 2.28rem;
+  line-height: 110%;
+  margin: 1.14rem 0 0.912rem 0; }
+
+h5 {
+  font-size: 1.64rem;
+  line-height: 110%;
+  margin: 0.82rem 0 0.656rem 0; }
+
+h6 {
+  font-size: 1rem;
+  line-height: 110%;
+  margin: 0.5rem 0 0.4rem 0; }
 
 button.md-button {
   margin: 0; }
@@ -1551,11 +1587,11 @@ ul.md-select-dropdown-content {
     text-align: left;
     text-transform: none;
     color: #FF5722;
-    font-weight: 700; }
+    font-weight: 400; }
     ul.md-select-dropdown-content li.selected {
-      background-color: #f7f0f0; }
+      background-color: #e6d6d6; }
     ul.md-select-dropdown-content li:hover:not(.disabled) {
-      background-color: #d2c0c0; }
+      background-color: #e6d6d6; }
 
 table.md-data-table {
   width: 100%;

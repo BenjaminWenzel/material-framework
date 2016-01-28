@@ -107,15 +107,15 @@ ul.md-select-dropdown-content {
 		text-align     : left;
 		text-transform : none;
 		color          : mdGetColor($md-theme-accent-1);
-		font-weight    : 700;
+		font-weight    : 400;
 
 		&.selected {
-			background-color : mdGetLightColor(grey, 4);
+			background-color : mdGetLightColor(grey, 3);
 		}
 
 		&:hover {
 			&:not(.disabled) {
-				background-color : mdGetLightColor(grey, 2);
+				background-color : mdGetLightColor(grey, 3);
 			}
 		}
 	}

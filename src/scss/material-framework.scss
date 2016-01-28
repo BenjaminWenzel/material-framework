@@ -51,7 +51,8 @@ i.right {
 }
 
 .disabled {
-	color : mdGetLightColor(grey, 3);
+	color  : mdGetLightColor(grey, 3) !important;
+	cursor : not-allowed !important;
 }
 
 .md-flash-message {
@@ -84,6 +85,7 @@ i.right {
 	}
 }
 
+@import "headings";
 //== Material Design Components
 //
 //##
