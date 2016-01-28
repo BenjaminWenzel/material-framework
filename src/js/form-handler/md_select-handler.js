@@ -51,7 +51,7 @@ SelectHandler.prototype.init = function SelectHandler$init() {
 					if ( self.__options[ i ].value === e.target.dataset.value ) {
 						self.__inputElement.selectedIndex = i;
 						self.__options[ i ].setAttribute( "selected", "true" );
-						self.__inputSelect.value = options[ i ].textContent;
+						self.__inputSelect.value = self.__options[ i ].textContent;
 					} else {
 						self.__options[ i ].removeAttribute( "selected" );
 					}

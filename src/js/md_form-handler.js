@@ -1,7 +1,7 @@
 var SelectHandler = require( "./form-handler/md_select-handler" );
 
 var FormHandler = function ( el ) {
-	this.__element = el;
+	this.__element      = el;
 	this.__labelElement = el.getElementsByClassName( "md-input-label" )[ 0 ];
 	this.__inputElement = document.getElementById( this.__labelElement.getAttribute( "for" ) );
 }
@@ -12,23 +12,22 @@ FormHandler.prototype.init = function FormHandler$init() {
 	if ( self.__inputElement.tagName.toLowerCase() === "select" ) {
 		var selectHandler = new SelectHandler( self.__element );
 		selectHandler.init();
-	} else {
-		self.handleChange();
-		self.__inputElement.addEventListener( "change", function () {
-			self.handleChange()
-		} );
-		if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
-			var hidden = document.createElement( "div" );
-			hidden.classList.add( "md-hidden-textarea" );
-			hidden.id = self.__inputElement.id + "-clone";
-			self.__inputElement.parentNode.appendChild( hidden );
+	}
+	self.handleChange();
+	self.__inputElement.addEventListener( "change", function () {
+		self.handleChange()
+	} );
+	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
+		var hidden = document.createElement( "div" );
+		hidden.classList.add( "md-hidden-textarea" );
+		hidden.id = self.__inputElement.id + "-clone";
+		self.__inputElement.parentNode.appendChild( hidden );
 
+		self.updateTextarea();
+
+		self.__inputElement.addEventListener( "input", function () {
 			self.updateTextarea();
-
-			self.__inputElement.addEventListener( "input", function () {
-				self.updateTextarea();
-			} );
-		}
+		} );
 	}
 };
 
