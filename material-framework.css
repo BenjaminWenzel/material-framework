@@ -1593,6 +1593,55 @@ ul.md-select-dropdown-content {
     ul.md-select-dropdown-content li:hover:not(.disabled) {
       background-color: #e6d6d6; }
 
+.switch, .switch * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none; }
+
+.switch {
+  margin: 10px 0; }
+  .switch label {
+    cursor: pointer; }
+    .switch label .lever {
+      content: "";
+      display: inline-block;
+      position: relative;
+      width: 40px;
+      height: 15px;
+      background-color: #898989;
+      border-radius: 15px;
+      transition: background 0.3s ease;
+      vertical-align: middle;
+      margin: 0 16px; }
+      .switch label .lever:after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 21px;
+        height: 21px;
+        background-color: #e6d6d6;
+        border-radius: 21px;
+        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+        left: -5px;
+        top: -3px;
+        transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease; }
+    .switch label input[type=checkbox] {
+      box-sizing: border-box;
+      padding: 0;
+      opacity: 0;
+      width: 0;
+      height: 0; }
+      .switch label input[type=checkbox]:checked, .switch label input[type=checkbox]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+        visibility: hidden; }
+      .switch label input[type=checkbox]:checked + .lever {
+        background-color: #4dc8ff; }
+        .switch label input[type=checkbox]:checked + .lever:after {
+          background-color: #03A9F4;
+          left: 24px; }
+
 table.md-data-table {
   width: 100%;
   border-collapse: collapse; }
