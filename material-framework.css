@@ -1600,6 +1600,7 @@ ul.md-select-dropdown-content {
   -ms-user-select: none; }
 
 .switch {
+  padding: 0 .75rem;
   margin: 10px 0; }
   .switch label {
     cursor: pointer; }
