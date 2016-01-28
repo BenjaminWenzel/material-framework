@@ -1,6 +1,5 @@
 $__md_color_count : 5;
-//$__md_color_factor : 8.38;
-$__md_color_factor : 7.32;
+$__md_color_factor : 8.38;
 
 @function __md_color-darken($color, $value) {
 	$__result : darken($color, $__md_color_factor * $value);
