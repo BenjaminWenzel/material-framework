@@ -1235,7 +1235,7 @@ i.right {
   top: 0;
   width: auto;
   clear: both;
-  margin-top: 10px;
+  margin: 10px 0;
   position: relative;
   max-width: 100%;
   height: auto;
@@ -1601,7 +1601,7 @@ ul.md-select-dropdown-content {
 
 .switch {
   padding: 0 .75rem;
-  margin: 10px 0; }
+  margin: 10px 0 20px; }
   .switch label {
     cursor: pointer;
     font-size: 0.8rem;
