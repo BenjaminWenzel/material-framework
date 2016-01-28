@@ -120,3 +120,71 @@ ul.md-select-dropdown-content {
 		}
 	}
 }
+
+.switch, .switch * {
+	-webkit-user-select : none;
+	-moz-user-select    : none;
+	-khtml-user-select  : none;
+	-ms-user-select     : none;
+}
+
+.switch {
+	margin : 10px 0;
+
+	label {
+		cursor : pointer;
+
+		.lever {
+			content          : "";
+			display          : inline-block;
+			position         : relative;
+			width            : 40px;
+			height           : 15px;
+			background-color : mdGetDarkColor(grey, 1);
+			border-radius    : 15px;
+			//margin-right     : 10px;
+			transition       : background 0.3s ease;
+			vertical-align   : middle;
+			margin           : 0 16px;
+
+			&:after {
+				content          : "";
+				position         : absolute;
+				display          : inline-block;
+				width            : 21px;
+				height           : 21px;
+				background-color : mdGetLightColor(grey, 3);
+				border-radius    : 21px;
+				box-shadow       : 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+				left             : -5px;
+				top              : -3px;
+				transition       : left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
+			}
+		}
+
+		input[type=checkbox] {
+			box-sizing : border-box;
+			padding    : 0;
+			opacity    : 0;
+			width      : 0;
+			height     : 0;
+
+			&:checked,
+			&:not(:checked) {
+				position   : absolute;
+				left       : -9999px;
+				visibility : hidden;
+			}
+
+			&:checked {
+				& + .lever {
+					background-color : mdGetLightColor($md-theme, 2);
+					&:after {
+						background-color : mdGetColor($md-theme);
+						left             : 24px;
+					}
+				}
+			}
+		}
+	}
+}
