@@ -5,7 +5,7 @@ function SelectHandler( el ) {
 	this.__wrapperDiv   = document.createElement( "div" );
 	this.__optionList   = document.createElement( "ul" );
 	this.__optionListId = "md-select-options-" + this.__uid;
-	this.__options      = self.__inputElement.getElementsByTagName( "option" );
+	this.__options      = this.__inputElement.getElementsByTagName( "option" );
 	this.__inputSelect  = document.createElement( "input" );
 }
 
