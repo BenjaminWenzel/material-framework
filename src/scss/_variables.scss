@@ -3,22 +3,24 @@
 //##
 
 /*** Theme ***/
-$md-theme: lime;
+$md-theme : light-blue;
+$md-theme-accent-1 : deep-orange;
+$md-theme-accent-2 : amber;
 
 //== Private variables
 //
 //##
 
 // Grid Variables
-$__num-cols: 12 !default;
-$__gutter-width: 1.5rem !default;
+$__num-cols : 12 !default;
+$__gutter-width : 1.5rem !default;
 
 /*** Navbar ***/
-$__navbar-height: 64px !default;
-$__navbar-height-mobile: 56px !default;
-$__navbar-font-color: #FFFFFF !default;
-$__navbar-brand-font-size: 2.1rem !default;
+$__navbar-height : 64px !default;
+$__navbar-height-mobile : 56px !default;
+$__navbar-font-color : #FFFFFF !default;
+$__navbar-brand-font-size : 2.1rem !default;
 
 /*** SideNav ***/
-$__sidenav-bg-color: #FFFFFF !default;
-$__sidenav-padding-right: 15px !default;
+$__sidenav-bg-color : #FFFFFF !default;
+$__sidenav-padding-right : 15px !default;

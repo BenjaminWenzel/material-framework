@@ -1265,7 +1265,7 @@ button.md-button i {
 .md-button {
   text-decoration: none;
   color: #FFFFFF;
-  background-color: #CDDC39;
+  background-color: #03A9F4;
   text-align: center;
   letter-spacing: 0.5px;
   border: none;
@@ -1282,7 +1282,7 @@ button.md-button i {
   transition: all 0.3s ease-out; }
   .md-button:hover {
     color: #FFFFFF;
-    background-color: #e9f575; }
+    background-color: #4dc8ff; }
   .md-button i {
     font-size: 1.3rem;
     line-height: inherit;
@@ -1312,7 +1312,7 @@ dl.md-dlist dd {
 dl.md-dlist dt {
   white-space: nowrap;
   font-weight: 700;
-  color: #CDDC39; }
+  color: #03A9F4; }
 
 .md-card-panel {
   transition: box-shadow .25s;
@@ -1330,11 +1330,11 @@ ul.md-collection {
   ul.md-collection li {
     padding: 12px; }
     ul.md-collection li .secondary {
-      color: #CDDC39;
+      color: #03A9F4;
       float: right;
       font-weight: 700; }
     ul.md-collection li.md-collection-header {
-      background-color: #CDDC39;
+      background-color: #03A9F4;
       color: #FFFFFF;
       font-size: 22px;
       line-height: 40px; }
@@ -1359,7 +1359,7 @@ table.md-collection {
   table.md-collection:last-child {
     border-bottom: none; }
   table.md-collection i {
-    color: #CDDC39; }
+    color: #03A9F4; }
   table.md-collection tr {
     transition: background-color 0.4s ease; }
   table.md-collection tr.md-collection-header,
@@ -1370,7 +1370,7 @@ table.md-collection {
     font-size: 22px;
     border-top: 1px solid #e6d6d6;
     border-bottom: 1px solid #e6d6d6;
-    background-color: #CDDC39; }
+    background-color: #03A9F4; }
     table.md-collection tr.md-collection-header i {
       color: #FFFFFF; }
     table.md-collection tr.md-collection-header .sort,
@@ -1380,7 +1380,7 @@ table.md-collection {
       padding-left: 10px; }
     table.md-collection tr.md-collection-header .sort {
       display: inline;
-      color: #CDDC39;
+      color: #03A9F4;
       font-size: 13px;
       margin-right: 8px; }
       table.md-collection tr.md-collection-header .sort select {
@@ -1401,13 +1401,13 @@ table.md-collection {
         box-shadow: none;
         border-bottom: 2px solid #FFFFFF; }
     table.md-collection tr.md-collection-header:hover {
-      background-color: #b0bd2d; }
+      background-color: #0b89c1; }
   table.md-collection tr.md-collection-subheader {
     font-size: 11px;
     min-height: 18px;
     line-height: 18px;
-    color: #e9f575;
-    border-bottom: 1px solid #CDDC39;
+    color: #4dc8ff;
+    border-bottom: 1px solid #03A9F4;
     font-weight: 700; }
     table.md-collection tr.md-collection-subheader:hover {
       background-color: inherit; }
@@ -1482,11 +1482,11 @@ table.md-collection {
     .md-input-group .md-input:focus,
     .md-input-group .md-select-dropdown:focus {
       outline: none;
-      border-bottom: 1px solid #CDDC39;
-      box-shadow: 0, 1px, 0, 0, #CDDC39; }
+      border-bottom: 1px solid #FF5722;
+      box-shadow: 0, 1px, 0, 0, #FF5722; }
       .md-input-group .md-input:focus ~ label.md-input-label,
       .md-input-group .md-select-dropdown:focus ~ label.md-input-label {
-        color: #CDDC39; }
+        color: #FF5722; }
   .md-input-group select {
     display: none; }
   .md-input-group textarea.md-input {
@@ -1549,7 +1549,8 @@ ul.md-select-dropdown-content {
     line-height: 1.5rem;
     width: 100%;
     text-align: left;
-    text-transform: none; }
+    text-transform: none;
+    color: #FF5722; }
     ul.md-select-dropdown-content li.selected {
       background-color: #f7f0f0; }
     ul.md-select-dropdown-content li:hover:not(.disabled) {
