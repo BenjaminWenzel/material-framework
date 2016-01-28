@@ -1603,7 +1603,9 @@ ul.md-select-dropdown-content {
   padding: 0 .75rem;
   margin: 10px 0; }
   .switch label {
-    cursor: pointer; }
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #d2c0c0; }
     .switch label .lever {
       content: "";
       display: inline-block;

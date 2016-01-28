@@ -133,7 +133,9 @@ ul.md-select-dropdown-content {
 	margin  : 10px 0;
 
 	label {
-		cursor : pointer;
+		cursor    : pointer;
+		font-size : 0.8rem;
+		color     : mdGetLightColor(grey, 2);
 
 		.lever {
 			content          : "";
