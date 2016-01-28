@@ -29,7 +29,7 @@ SelectHandler.prototype.init = function SelectHandler$init() {
 			this.classList.add( "active" );
 			target.classList.add( "open" );
 		}
-		document.body.addEventListener( "click", self.hideDropdown, false ).bind(self);
+		document.body.addEventListener( "click", self.hideDropdown.bind( self ), false );
 	} );
 
 	/*** Dropdown list ***/
