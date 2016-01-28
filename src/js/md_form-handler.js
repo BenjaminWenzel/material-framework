@@ -1,7 +1,7 @@
 var SelectHandler = require( "./form-handler/md_select-handler" );
 
 var FormHandler = function ( el ) {
-	this,__element = el;
+	this.__element = el;
 	this.__labelElement = el.getElementsByClassName( "md-input-label" )[ 0 ];
 	this.__inputElement = document.getElementById( this.__labelElement.getAttribute( "for" ) );
 }

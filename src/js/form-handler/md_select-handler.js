@@ -1,28 +1,26 @@
 function SelectHandler( el ) {
 	this.__labelElement = el.getElementsByClassName( "md-input-label" )[ 0 ];
 	this.__inputElement = document.getElementById( this.__labelElement.getAttribute( "for" ) );
+	this.__uid          = self.getUid();
+	this.__wrapperDiv   = document.createElement( "div" );
+	this.__optionList   = document.createElement( "ul" );
+	this.__optionListId = "md-select-options-" + this.__uid;
+	this.__options      = self.__inputElement.getElementsByTagName( "option" );
+	this.__inputSelect  = document.createElement( "input" );
 }
 
-SelectHandler.prototype.handleSelect = function SelectHandler$handleSelect() {
+SelectHandler.prototype.init = function SelectHandler$init() {
 	var self = this;
 
-	var uid          = self.getUid();
-	var wrapperDiv   = document.createElement( "div" );
-	var optionList   = document.createElement( "ul" );
-	var optionListId = "md-select-options-" + uid;
-	var options      = self.__inputElement.getElementsByTagName( "option" );
-	var inputSelect  = document.createElement( "input" );
-	var listItem     = null;
-
-	wrapperDiv.classList.add( "md-select" );
+	self.__wrapperDiv.classList.add( "md-select" );
 
 	/*** Input field to trigger dropdown ***/
-	inputSelect.type = "text";
-	inputSelect.classList.add( "md-select-dropdown" );
-	inputSelect.dataset.activates = optionListId;
-	inputSelect.value             = options[ 0 ].textContent;
-	inputSelect.readOnly          = true;
-	inputSelect.addEventListener( "click", function () {
+	self.__inputSelect.type = "text";
+	self.__inputSelect.classList.add( "md-select-dropdown" );
+	self.__inputSelect.dataset.activates = self.__optionListId;
+	self.__inputSelect.value             = self.__options[ 0 ].textContent;
+	self.__inputSelect.readOnly          = true;
+	self.__inputSelect.addEventListener( "click", function () {
 		var target = document.getElementById( this.dataset.activates );
 		if ( this.className.indexOf( "active" ) !== -1 ) {
 			this.classList.remove( "active" );
@@ -31,25 +29,16 @@ SelectHandler.prototype.handleSelect = function SelectHandler$handleSelect() {
 			this.classList.add( "active" );
 			target.classList.add( "open" );
 		}
-		document.body.addEventListener( "click", hideDropdown, false );
+		document.body.addEventListener( "click", self.hideDropdown, false );
 	} );
 
-	function hideDropdown( e ) {
-		if ( e.target.dataset.activates !== optionListId ) {
-			document.body.removeEventListener( "click", hideDropdown, false );
-			var inputSelect = self.__inputElement.parentNode.getElementsByClassName( "md-select-dropdown" )[ 0 ];
-			inputSelect.classList.remove( "active" );
-			var dropDown = document.getElementById( optionListId );
-			dropDown.classList.remove( "open" );
-		}
-	}
-
 	/*** Dropdown list ***/
-	[].forEach.call( options, function ( o ) {
+	var listItem = null;
+	[].forEach.call( self.__options, function ( o ) {
 		listItem = document.createElement( "li" );
 		if ( o.selected ) {
 			listItem.classList.add( "selected" );
-			inputSelect.value = o.textContent;
+			self.__inputSelect.value = o.textContent;
 		}
 		listItem.dataset.value = o.value;
 		listItem.innerHTML     = o.textContent;
@@ -58,17 +47,16 @@ SelectHandler.prototype.handleSelect = function SelectHandler$handleSelect() {
 			listItem.classList.add( "disabled" );
 		} else {
 			listItem.addEventListener( "click", function ( e ) {
-				var options = self.__inputElement.getElementsByTagName( "option" );
-				for ( var i = 0; i < options.length; i++ ) {
-					if ( options[ i ].value === e.target.dataset.value ) {
+				for ( var i = 0; i < self.__options.length; i++ ) {
+					if ( self.__options[ i ].value === e.target.dataset.value ) {
 						self.__inputElement.selectedIndex = i;
-						options[ i ].setAttribute( "selected", "true" );
-						inputSelect.value = options[ i ].textContent;
+						self.__options[ i ].setAttribute( "selected", "true" );
+						self.__inputSelect.value = options[ i ].textContent;
 					} else {
-						options[ i ].removeAttribute( "selected" );
+						self.__options[ i ].removeAttribute( "selected" );
 					}
 				}
-				[].forEach.call( optionList.childNodes, function ( li ) {
+				[].forEach.call( self.__optionList.childNodes, function ( li ) {
 					if ( li.dataset.value === e.target.dataset.value ) {
 						li.classList.add( "selected" );
 					} else {
@@ -78,23 +66,26 @@ SelectHandler.prototype.handleSelect = function SelectHandler$handleSelect() {
 			} );
 		}
 
-		optionList.appendChild( listItem );
+		self.__optionList.appendChild( listItem );
 	} );
-	optionList.id = optionListId;
-	optionList.classList.add( "md-select-dropdown-content" );
+	self.__optionList.id = self.__optionListId;
+	self.__optionList.classList.add( "md-select-dropdown-content" );
 
-	wrapperDiv.appendChild( inputSelect );
-	wrapperDiv.appendChild( optionList );
-	self.__inputElement.parentNode.insertBefore( wrapperDiv, self.__inputElement );
+	self.__wrapperDiv.appendChild( self.__inputSelect );
+	self.__wrapperDiv.appendChild( self.__optionList );
+	self.__inputElement.parentNode.insertBefore( self.__wrapperDiv, self.__inputElement );
 };
 
-SelectHandler.prototype.init = function SelectHandler$init() {
+SelectHandler.prototype.hideDropdown = function SelectHandler$hideDropdown( e ) {
 	var self = this;
 
-	if ( self.__inputElement.tagName.toLowerCase() === "select" ) {
-		self.handleSelect();
+	if ( e.target.dataset.activates !== self.__optionListId ) {
+		document.body.removeEventListener( "click", self.hideDropdown, false );
+		self.__inputSelect.classList.remove( "active" );
+		var dropDown = document.getElementById( self.__optionListId );
+		dropDown.classList.remove( "open" );
 	}
-};
+}
 
 SelectHandler.prototype.getUid = function SelectHandler$getUid() {
 	function s4() {
