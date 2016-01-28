@@ -1550,7 +1550,8 @@ ul.md-select-dropdown-content {
     width: 100%;
     text-align: left;
     text-transform: none;
-    color: #FF5722; }
+    color: #FF5722;
+    font-weight: 700; }
     ul.md-select-dropdown-content li.selected {
       background-color: #f7f0f0; }
     ul.md-select-dropdown-content li:hover:not(.disabled) {
