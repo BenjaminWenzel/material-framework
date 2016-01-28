@@ -50,6 +50,40 @@ i.right {
 	}
 }
 
+.disabled {
+	color : mdGetLightColor(grey, 3);
+}
+
+.md-flash-message {
+	border-radius    : 2px;
+	top              : 0;
+	width            : auto;
+	clear            : both;
+	margin-top       : 10px;
+	position         : relative;
+	max-width        : 100%;
+	height           : auto;
+	min-height       : 48px;
+	line-height      : 1.5em;
+	word-break       : break-all;
+	background-color : mdGetDarkColor(blue-grey, 3);
+	padding          : 10px 25px;
+	font-size        : 1.1rem;
+	font-weight      : 300;
+	color            : #FFFFFF;
+	justify-content  : space-between;
+
+	&.notice {
+		color : mdGetColor(lime);
+	}
+	&.warning {
+		color : mdGetLightColor(yellow, 1);
+	}
+	&.error {
+		color : mdGetDarkColor(red, 3);
+	}
+}
+
 //== Material Design Components
 //
 //##

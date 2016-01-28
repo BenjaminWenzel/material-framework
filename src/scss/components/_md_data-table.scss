@@ -63,7 +63,7 @@ table.md-data-table {
 			}
 
 			&.odd {
-				background-color : #F1F1F1;
+				background-color : mdGetLightColor(grey, 4);
 			}
 
 			&.even {
@@ -71,7 +71,7 @@ table.md-data-table {
 			}
 
 			&:hover {
-				background-color : #EAEAEA;
+				background-color : mdGetLightColor(grey, 3);
 				a {
 					text-decoration : none;
 				}
@@ -84,7 +84,7 @@ table.md-data-table {
 			td {
 				vertical-align : top;
 				padding        : 6px 10px;
-				border-top     : 1px solid #DDDDDD;
+				border-top     : 1px solid mdGetColor(grey);
 			}
 
 			a {
