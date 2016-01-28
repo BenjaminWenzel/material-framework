@@ -1,7 +1,7 @@
 function SelectHandler( el ) {
 	this.__labelElement = el.getElementsByClassName( "md-input-label" )[ 0 ];
 	this.__inputElement = document.getElementById( this.__labelElement.getAttribute( "for" ) );
-	this.__uid          = self.getUid();
+	this.__uid          = mfw.getUid();
 	this.__wrapperDiv   = document.createElement( "div" );
 	this.__optionList   = document.createElement( "ul" );
 	this.__optionListId = "md-select-options-" + this.__uid;
@@ -86,15 +86,5 @@ SelectHandler.prototype.hideDropdown = function SelectHandler$hideDropdown( e ) 
 		dropDown.classList.remove( "open" );
 	}
 }
-
-SelectHandler.prototype.getUid = function SelectHandler$getUid() {
-	function s4() {
-		return Math.floor( (1 + Math.random()) * 0x10000 )
-				.toString( 16 )
-				.substring( 1 );
-	}
-
-	return s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-};
 
 module.exports = SelectHandler;
