@@ -444,8 +444,10 @@ FormHandler.prototype.init = function FormHandler$init() {
 	var self = this;
 
 	if ( self.__inputElement.tagName.toLowerCase() === "select" ) {
-		var selectHandler = new SelectHandler( self.__element );
-		selectHandler.init();
+		if ( !self.__inputElement.getAttribute( "multiple" ) ) {
+			var selectHandler = new SelectHandler( self.__element );
+			selectHandler.init();
+		}
 	}
 	self.handleChange();
 	self.__inputElement.addEventListener( "change", function () {
