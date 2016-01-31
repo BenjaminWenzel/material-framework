@@ -1,6 +1,12 @@
 //== Buttons
 //
 //##
+
+.md-button,
+.md-button-floating {
+	user-select : none;
+}
+
 button.md-button {
 	margin : 0;
 }

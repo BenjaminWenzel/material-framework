@@ -1290,6 +1290,10 @@ h6 {
   line-height: 110%;
   margin: 0.5rem 0 0.4rem 0; }
 
+.md-button,
+.md-button-floating {
+  user-select: none; }
+
 button.md-button {
   margin: 0; }
 
