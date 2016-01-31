@@ -62,8 +62,12 @@ a, button {
 	line-height      : $button-size;
 	border-radius    : 50%;
 	padding          : 0;
+	margin           : 2px;
+	text-align       : center;
+
 	i {
-		color : #FFFFFF !important;
+		color       : #FFFFFF !important;
+		line-height : $button-size !important;
 	}
 	&:hover {
 		background-color : mdGetLightColor($md-theme, 2);

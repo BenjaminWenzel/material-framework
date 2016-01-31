@@ -1336,9 +1336,12 @@ button.md-button i {
   height: 38px;
   line-height: 38px;
   border-radius: 50%;
-  padding: 0; }
+  padding: 0;
+  margin: 2px;
+  text-align: center; }
   .md-button-floating i {
-    color: #FFFFFF !important; }
+    color: #FFFFFF !important;
+    line-height: 38px !important; }
   .md-button-floating:hover {
     background-color: #4dc8ff; }
     .md-button-floating:hover i {
