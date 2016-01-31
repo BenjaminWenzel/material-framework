@@ -1664,6 +1664,9 @@ ul.md-select-dropdown-content {
           background-color: #03A9F4;
           left: 24px; }
 
+div.md-data-table-filter {
+  width: 300px; }
+
 table.md-data-table {
   width: 100%;
   border-collapse: collapse; }
