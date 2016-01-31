@@ -1331,6 +1331,7 @@ button.md-button i {
     background-color: #ffb1ab; }
 
 .md-button-floating {
+  background-color: #03A9F4;
   width: 38px;
   height: 38px;
   line-height: 38px;
@@ -1338,6 +1339,10 @@ button.md-button i {
   padding: 0; }
   .md-button-floating i {
     color: #FFFFFF !important; }
+  .md-button-floating:hover {
+    background-color: #4dc8ff; }
+    .md-button-floating:hover i {
+      color: #FFFFFF; }
 
 dl.md-dlist dd, dl.md-dlist dt {
   display: block; }
