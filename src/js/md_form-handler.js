@@ -1,4 +1,5 @@
-var SelectHandler = require( "./form-handler/md_select-handler" );
+var SelectHandler   = require( "./form-handler/md_select-handler" );
+var TextAreaHandler = require( "./form-handler/md_textarea-handler" );
 
 var FormHandler = function ( el ) {
 	this.__element      = el;
@@ -15,41 +16,17 @@ FormHandler.prototype.init = function FormHandler$init() {
 			selectHandler.init();
 		}
 	}
+
+	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
+		var textAreaHandler = new TextAreaHandler( self.__element );
+		textAreaHandler.init();
+	}
+
 	self.handleChange();
 	self.__inputElement.addEventListener( "change", function () {
 		self.handleChange()
 	} );
-	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
-		var hidden = document.createElement( "div" );
-		hidden.classList.add( "md-hidden-textarea" );
-		hidden.id = self.__inputElement.id + "-clone";
-		self.__inputElement.parentNode.appendChild( hidden );
-
-		self.updateTextarea();
-
-		self.__inputElement.addEventListener( "input", function () {
-			self.updateTextarea();
-		} );
-	}
 };
-
-FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
-	var self = this;
-
-	var input  = self.__inputElement.value.split( /\r\n|\r|\n/g );
-	var hidden = document.getElementById( self.__inputElement.id + "-clone" );
-
-	hidden.innerHTML = "";
-
-	[].forEach.call( input, function ( e ) {
-		hidden.innerHTML = hidden.innerHTML + e.outerHTML + "<br/>";
-	} );
-
-	hidden.style.height              = "auto";
-	hidden.style.display             = "block";
-	self.__inputElement.style.height = hidden.offsetHeight + "px";
-	hidden.style.display             = "none";
-}
 
 FormHandler.prototype.handleChange = function FormHandler$handleChange() {
 	var self = this;

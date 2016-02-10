@@ -90,6 +90,45 @@ SelectHandler.prototype.hideDropdown = function SelectHandler$hideDropdown( e ) 
 
 module.exports = SelectHandler;
 },{}],2:[function(require,module,exports){
+function TextAreaHandler( el ) {
+	this.__element      = el;
+	this.__labelElement = el.getElementsByClassName( "md-input-label" )[ 0 ];
+	this.__inputElement = document.getElementById( this.__labelElement.getAttribute( "for" ) );
+	this.__hiddenDiv    = document.createElement( "div" );
+}
+
+TextAreaHandler.prototype.init = function TextAreaHandler$init() {
+	var self = this;
+
+	self.__hiddenDiv.classList.add( "md-hidden-textarea" );
+	self.__hiddenDiv.id = self.__inputElement.id + "-clone";
+	self.__inputElement.parentNode.appendChild( hidden );
+
+	self.updateTextarea();
+
+	self.__inputElement.addEventListener( "input", function () {
+		self.updateTextarea();
+	} );
+};
+
+TextAreaHandler.prototype.updateTextarea = function TextAreaHandler$updateTextarea() {
+	var self  = this;
+	var input = self.__inputElement.value.split( /\r\n|\r|\n/g );
+
+	self.__hiddenDiv.innerHTML = "";
+
+	[].forEach.call( input, function ( e ) {
+		self.__hiddenDiv.innerHTML = self.__hiddenDiv.innerHTML + e.outerHTML + "<br/>";
+	} );
+
+	self.__hiddenDiv.style.height    = "auto";
+	self.__hiddenDiv.style.display   = "block";
+	self.__inputElement.style.height = self.__hiddenDiv.offsetHeight + "px";
+	self.__hiddenDiv.style.display   = "none";
+}
+
+module.exports = TextAreaHandler;
+},{}],3:[function(require,module,exports){
 var Parallax    = require( "./md_parallax" );
 var FormHandler = require( "./md_form-handler" );
 var DataTable   = require( "./md_data-table" );
@@ -135,7 +174,7 @@ mfw.ready( function () {
 		} );
 	}
 } );
-},{"./md_data-table":3,"./md_form-handler":4,"./md_parallax":5}],3:[function(require,module,exports){
+},{"./md_data-table":4,"./md_form-handler":5,"./md_parallax":6}],4:[function(require,module,exports){
 function DataTable( selector ) {
 	this.__container      = null;
 	this.__sortingTrigger = null;
@@ -431,8 +470,9 @@ DataTable.prototype.parseSize = function DataTable$parseSize( size ) {
 }
 
 module.exports = DataTable;
-},{}],4:[function(require,module,exports){
-var SelectHandler = require( "./form-handler/md_select-handler" );
+},{}],5:[function(require,module,exports){
+var SelectHandler   = require( "./form-handler/md_select-handler" );
+var TextAreaHandler = require( "./form-handler/md_textarea-handler" );
 
 var FormHandler = function ( el ) {
 	this.__element      = el;
@@ -449,41 +489,17 @@ FormHandler.prototype.init = function FormHandler$init() {
 			selectHandler.init();
 		}
 	}
+
+	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
+		var textAreaHandler = new TextAreaHandler( self.__element );
+		textAreaHandler.init();
+	}
+
 	self.handleChange();
 	self.__inputElement.addEventListener( "change", function () {
 		self.handleChange()
 	} );
-	if ( self.__inputElement.tagName.toLowerCase() === "textarea" ) {
-		var hidden = document.createElement( "div" );
-		hidden.classList.add( "md-hidden-textarea" );
-		hidden.id = self.__inputElement.id + "-clone";
-		self.__inputElement.parentNode.appendChild( hidden );
-
-		self.updateTextarea();
-
-		self.__inputElement.addEventListener( "input", function () {
-			self.updateTextarea();
-		} );
-	}
 };
-
-FormHandler.prototype.updateTextarea = function FormHandler$updateTextarea() {
-	var self = this;
-
-	var input  = self.__inputElement.value.split( /\r\n|\r|\n/g );
-	var hidden = document.getElementById( self.__inputElement.id + "-clone" );
-
-	hidden.innerHTML = "";
-
-	[].forEach.call( input, function ( e ) {
-		hidden.innerHTML = hidden.innerHTML + e.outerHTML + "<br/>";
-	} );
-
-	hidden.style.height              = "auto";
-	hidden.style.display             = "block";
-	self.__inputElement.style.height = hidden.offsetHeight + "px";
-	hidden.style.display             = "none";
-}
 
 FormHandler.prototype.handleChange = function FormHandler$handleChange() {
 	var self = this;
@@ -495,7 +511,7 @@ FormHandler.prototype.handleChange = function FormHandler$handleChange() {
 };
 
 module.exports = FormHandler;
-},{"./form-handler/md_select-handler":1}],5:[function(require,module,exports){
+},{"./form-handler/md_select-handler":1,"./form-handler/md_textarea-handler":2}],6:[function(require,module,exports){
 var Parallax = function ( el ) {
 	this.__element         = el;
 	this.__image           = this.__element.getElementsByTagName( "img" )[ 0 ];
@@ -525,4 +541,4 @@ Parallax.prototype.handleScroll = function Parallax$handleScroll() {
 };
 
 module.exports = Parallax;
-},{}]},{},[2]);
+},{}]},{},[3]);
