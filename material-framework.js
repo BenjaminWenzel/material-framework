@@ -499,6 +499,21 @@ FormHandler.prototype.init = function FormHandler$init() {
 	self.__inputElement.addEventListener( "change", function () {
 		self.handleChange()
 	} );
+
+	self.handleSubmit();
+};
+
+FormHandler.prototype.handleSubmit = function FormHandler$handleSubmit() {
+	var self = this;
+
+	var submitButtons = document.getElementsByClassName( "form-action" );
+	if ( submitButtons && submitButtons.length < 0 ) {
+		[].forEach.call( submitButtons, function ( s ) {
+			s.addEventListener( "click", function ( e ) {
+				console.log( e );
+			}, false );
+		} );
+	}
 };
 
 FormHandler.prototype.handleChange = function FormHandler$handleChange() {
