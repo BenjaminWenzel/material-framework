@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+	head
+		title
+			block title
+				| Material Framework &#9758;&nbsp;
+		script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+		script(src="assets/material-framework/js/material-framework.min.js")
+		link(href="assets/material-framework/css/material-framework.min.css", rel="stylesheet")
+		link(href="assets/css/main.min.css", rel="stylesheet")
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+		link(href="favicon.ico", rel="icon", type="image/x-icon" )
+	body
+		a#top
+		include ../partial/nav.pug
+		block content

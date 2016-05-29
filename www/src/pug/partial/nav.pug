@@ -1,0 +1,6 @@
+-var menu = { 'home': '/', 'CSS': '/css.html', 'components': '/components.html' };
+
+ul#side-nav
+	each val, key in menu
+		li
+			a(href=val, title=key)= key.charAt( 0 ).toUpperCase() + key.slice( 1 )
