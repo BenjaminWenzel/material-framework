@@ -1,23 +1,12 @@
-# NPM
+temp/
+
+# IDE
+.idea/deployment.xml
+.idea/workspace.xml
+
+# Bower Comopnents
+src/lib/
+
+# NPM Modules
 npm-debug.log
 node_modules/
-
-# PhpStorm
-*.iml
-
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/dictionaries
-.idea/shelf
-
-.idea/dataSources.ids
-.idea/dataSources.xml
-.idea/sqlDataSources.xml
-.idea/dynamic.xml
-.idea/uiDesigner.xml
-
-.idea/gradle.xml
-.idea/libraries
-
-*.ipr
-*.iws
