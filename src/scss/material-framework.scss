@@ -1,98 +1,25 @@
-//== Framework
-//
-//##
-@import "color-palettes";
+@import "colors";
 @import "mixins";
 @import "variables";
-@import "grid";
-
-//== Global Styles
-//
+@import "main";
+//===== ===== ===== ===== =====
+//  Components
 //##
-*,
-*:before {
-	box-sizing : border-box;
-}
-
-a {
-	text-decoration : none;
-
-	&:hover {
-		text-decoration : none;
-		outline         : none;
-	}
-}
-
-.left {
-	float : left !important;
-}
-
-i.left {
-	margin-right : 15px;
-}
-
-.right {
-	float : right !important;
-}
-
-i.right {
-	margin-left : 15px;
-}
-
-.clear-fix {
-	&:before,
-	&:after {
-		content : " ";
-		display : table;
-	}
-	&:after {
-		clear : both;
-	}
-}
-
-.disabled {
-	color  : mdGetLightColor(grey, 3) !important;
-	cursor : not-allowed !important;
-}
-
-.md-flash-message {
-	border-radius    : 2px;
-	top              : 0;
-	width            : auto;
-	clear            : both;
-	margin           : 10px 0;
-	position         : relative;
-	max-width        : 100%;
-	height           : auto;
-	min-height       : 48px;
-	line-height      : 1.5em;
-	word-break       : break-all;
-	background-color : mdGetDarkColor(blue-grey, 3);
-	padding          : 10px 25px;
-	font-size        : 1.1rem;
-	font-weight      : 300;
-	color            : #FFFFFF;
-	justify-content  : space-between;
-
-	&.notice {
-		color : mdGetColor(lime);
-	}
-	&.warning {
-		color : mdGetLightColor(yellow, 1);
-	}
-	&.error {
-		color : mdGetDarkColor(red, 3);
-	}
-}
-
-@import "headings";
-//== Material Design Components
-//
-//##
-@import "components/md_button";
-@import "components/md_dlist";
-@import "components/md_card-panel";
-@import "components/md_collection";
-@import "components/md_parallax";
-@import "components/md_forms";
-@import "components/md_data-table";
+//@import "components/icons";
+@import "components/grid";
+@import "components/side-nav";
+@import "components/roboto";
+@import "components/typography";
+//@import "components/cards";
+//@import "components/toast";
+//@import "components/tabs";
+//@import "components/tooltip";
+//@import "components/buttons";
+//@import "components/dropdown";
+//@import "components/waves";
+//@import "components/modal";
+//@import "components/collapsible";
+//@import "components/chips";
+//@import "components/sideNav";
+//@import "components/preloader";
+//@import "components/carousel";

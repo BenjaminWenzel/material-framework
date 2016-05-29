@@ -1,0 +1,31 @@
+//===== ===== ===== ===== =====
+//  Typography
+//##
+
+html {
+	font-family : "Roboto", sans-serif;
+	font-weight : normal;
+	color       : $text-color;
+}
+
+a {
+	color           : $link-color;
+	text-decoration : none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight : 400;
+	line-height : 1.1;
+
+	a {
+		font-weight : inherit
+	}
+}
+
+@each $header, $fontSize in (h1: $h1-fontsize, h2: $h2-fontsize, h3: $h3-fontsize, h4: $h4-fontsize, h5: $h5-fontsize, h6: $h6-fontsize) {
+	#{$header} {
+		font-size   : $fontSize;
+		line-height : 110%;
+		margin      : ($fontSize / 2) 0 ($fontSize / 2.5) 0;
+	}
+}

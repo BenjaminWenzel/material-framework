@@ -1,26 +1,65 @@
-//== Public variables
-//
+//===== ===== ===== ===== =====
+//  Variables
 //##
+$roboto-font-path : "../fonts/roboto/";
 
-/*** Theme ***/
-$md-theme : light-blue;
-$md-theme-accent-1 : deep-orange;
-$md-theme-accent-2 : amber;
-
-//== Private variables
-//
+//===== ===== ===== ===== =====
+//  Media Breakpoints
 //##
+$screen-xs : 480px !default;
+$screen-xs-min : $screen-xs !default;
 
-// Grid Variables
-$__num-cols : 12 !default;
-$__gutter-width : 1.5rem !default;
+$screen-sm : 768px !default;
+$screen-sm-min : $screen-sm !default;
 
-/*** Navbar ***/
-$__navbar-height : 64px !default;
-$__navbar-height-mobile : 56px !default;
-$__navbar-font-color : #FFFFFF !default;
-$__navbar-brand-font-size : 2.1rem !default;
+$screen-md : 992px !default;
+$screen-md-min : $screen-md !default;
 
-/*** SideNav ***/
-$__sidenav-bg-color : #FFFFFF !default;
-$__sidenav-padding-right : 15px !default;
+$screen-lg : 1200px !default;
+$screen-lg-min : $screen-lg !default;
+
+$screen-xs-max : ($screen-sm-min - 1) !default;
+$screen-sm-max : ($screen-md-min - 1) !default;
+$screen-md-max : ($screen-lg-min - 1) !default;
+
+//===== ===== ===== ===== =====
+//  Grid
+//##
+$grid-columns : 12;
+$grid-gutter-width : 30px;
+
+//===== ===== ===== ===== =====
+//  Container
+//##
+$container-sm : (720px + $grid-gutter-width) !default;
+$container-md : (940px + $grid-gutter-width) !default;
+$container-lg : (1140px + $grid-gutter-width) !default;
+
+//===== ===== ===== ===== =====
+//  Typography
+$text-color : rgba(0, 0, 0, 0.87) !default;
+$h1-fontsize : 4.2rem !default;
+$h2-fontsize : 3.56rem !default;
+$h3-fontsize : 2.92rem !default;
+$h4-fontsize : 2.28rem !default;
+$h5-fontsize : 1.64rem !default;
+$h6-fontsize : 1rem !default;
+
+//===== ===== ===== ===== =====
+//  Color
+//##
+$main-color : getColor(light-green);
+$main-color-light : lighten($main-color, 15%);
+$main-color-dark : darken($main-color, 15%);
+$secondary-color : getLightColor(deep-orange, 1);
+$success-color : getColor(green);
+$error-color : getColor(red);
+$link-color : getDarkColor(light-green, 1) !default;
+
+//===== ===== ===== ===== =====
+//  Navbar
+//##
+$navbar-font-color : #3f3f3f;
+$navbar-height-xs : 64px;
+
+

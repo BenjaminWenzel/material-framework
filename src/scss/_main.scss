@@ -1,0 +1,32 @@
+.clearfix {
+	@include clearfix;
+}
+
+.relative {
+	position : relative;
+}
+
+i {
+	line-height : inherit;
+
+	&.left {
+		float        : left;
+		margin-right : 15px;
+	}
+	&.right {
+		float       : right;
+		margin-left : 15px;
+	}
+	&.tiny {
+		font-size : 1rem;
+	}
+	&.small {
+		font-size : 2rem;
+	}
+	&.medium {
+		font-size : 4rem;
+	}
+	&.large {
+		font-size : 6rem;
+	}
+}

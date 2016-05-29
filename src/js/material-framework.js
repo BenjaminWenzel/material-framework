@@ -1,45 +1,19 @@
-var Parallax    = require( "./md_parallax" );
-var FormHandler = require( "./md_form-handler" );
-var DataTable   = require( "./md_data-table" );
+import { bla } from "./side-nav";
 
-var MaterialFramework = function () {
-};
-
-MaterialFramework.prototype.ready = function MaterialFramework$ready( callback ) {
-	document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener( "DOMContentLoaded", callback );
-};
-
-MaterialFramework.prototype.dataTable = function MaterialFramework$dataTable( s ) {
-	var table = new DataTable( s );
-	table.init();
-};
-
-MaterialFramework.prototype.getUid = function SelectHandler$getUid() {
-	function s4() {
-		return Math.floor( (1 + Math.random()) * 0x10000 )
-				.toString( 16 )
-				.substring( 1 );
+class MaterialFramework {
+	init() {
+		window.mf = this;
+		return Promise.resolve();
 	}
+}
 
-	return s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-};
-
-window.mfw = mfw = new MaterialFramework();
-
-mfw.ready( function () {
-
-	var parallaxContainer = document.getElementsByClassName( "parallax-container" );
-	if ( parallaxContainer ) {
-		[].forEach.call( parallaxContainer, function ( el ) {
-			new Parallax( el );
-		} );
-	}
-
-	var inputGroups = document.getElementsByClassName( "md-input-group" );
-	if ( inputGroups ) {
-		[].forEach.call( inputGroups, function ( el ) {
-			var formHandler = new FormHandler( el );
-			formHandler.init();
-		} );
-	}
+$( document ).ready( ()=> {
+	const mf = new MaterialFramework();
+	mf.init()
+		.then(
+			function() {
+				console.log( "Material Framework loaded…" );
+				console.log( bla );
+			}
+		);
 } );

@@ -1,0 +1,76 @@
+//===== ===== ===== ===== =====
+//  Navbar
+//##
+nav {
+	width            : 100%;
+	color            : $navbar-font-color;
+	background-color : $main-color;
+	height           : $navbar-height-xs;
+	line-height      : $navbar-height-xs;
+
+	a {
+		color : $navbar-font-color;
+	}
+
+	i,
+	i.material-icons {
+		display     : block;
+		font-size   : 2rem;
+		height      : $navbar-height-xs;
+		line-height : $navbar-height-xs;
+	}
+
+	.button-collapse {
+		float    : left;
+		position : relative;
+		z-index  : 1;
+
+		i {
+			font-size : 2.7rem;
+		}
+	}
+
+	@media (max-width : $screen-md-max) {
+		a.button-collapse {
+			display : none;
+		}
+	}
+
+	ul {
+		margin          : 0;
+		list-style-type : none;
+
+		li {
+			transition      : background-color .3s;
+			float           : left;
+			padding         : 0;
+			list-style-type : none;
+
+			&.active {
+				background-color : rgba(0, 0, 0, .1);
+			}
+		}
+		a {
+			transition : background-color .3s;
+			font-size  : 1rem;
+			color      : #3f3f3f;
+			display    : inline-block;
+			padding    : 0 15px;
+			cursor     : pointer;
+
+			&.btn, &.btn-large, &.btn-flat, &.btn-floating {
+				margin-top   : -2px;
+				margin-left  : 15px;
+				margin-right : 15px;
+			}
+
+			&:hover {
+				background-color : rgba(0, 0, 0, .1);
+			}
+		}
+
+		&.left {
+			float : left;
+		}
+	}
+}
