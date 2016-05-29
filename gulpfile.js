@@ -1,104 +1,82 @@
-var gulp         = require( "gulp" );
-var sass         = require( "gulp-sass" );
-var concat       = require( "gulp-concat" );
-var cssnano      = require( "gulp-cssnano" );
-var autoprefixer = require( "gulp-autoprefixer" );
-var rename       = require( "gulp-rename" );
-var order        = require( "gulp-order" );
-var uglify       = require( "gulp-uglify" );
-var cached       = require( "gulp-cached" );
-var remember     = require( "gulp-remember" );
-var sourcemaps   = require( "gulp-sourcemaps" );
-var vinylPaths   = require( "vinyl-paths" );
-var del          = require( "del" );
-var plumber      = require( "gulp-plumber" );
-var browserify   = require( "browserify" );
-var source       = require( 'vinyl-source-stream' );
-var buffer       = require( 'vinyl-buffer' );
+"use strict";
 
-var cssOutputDirectory = "";
-var jsOutputDirectory  = "";
+const gulp    = require( "gulp" );
+const helper  = require( "./gulp-helper" );
+const dir     = {
+	source      : "src",
+	destination : "dist"
+};
+const sources = {
+	css   : [
+		`${dir.source}/scss/**/*.scss`
+	],
+	js    : [
+		`${dir.source}/js/material-framework.js`,
+		`${dir.source}/js/**/*.js`
+	],
+	fonts : [
+		`${dir.source}/fonts/**/*.*`
+	]
+};
 
-/**
- * Removes css files from output directory
- *
- * @returns {*}
+/** ----- ----- ----- ----- -----
+ * Cleaning
  */
-function cleanCss() {
-	return gulp
-			.src( "*.css", { cwd: cssOutputDirectory } )
-			.pipe( vinylPaths( del ) );
-}
+const cleanCss         = helper.clean(
+	[
+		`${dir.destination}/css/**/*.css`,
+		`${dir.destination}/css/**/*.map`
+	]
+);
+cleanCss.displayName   = "Cleaning CSS";
+const cleanJs          = helper.clean(
+	[
+		`${dir.destination}/js/**/*.js`,
+		`${dir.destination}/js/**/*.map`
+	]
+);
+cleanJs.displayName    = "Cleaning JS";
+const cleanFonts       = helper.clean( `${dir.destination}/fonts/**/*.*` );
+cleanFonts.displayName = "Cleaning Fonts";
+const clean            = gulp.parallel( cleanCss, cleanJs, cleanFonts );
 
-/**
- * Removes js files from output directory
- *
- * @returns {*}
+/** ----- ----- ----- ----- -----
+ * CSS
  */
-function cleanJs() {
-	return gulp
-			.src( [
-				      "*.js",
-				      "!gulpfile.js"
-			      ], { cwd: jsOutputDirectory } )
-			.pipe( vinylPaths( del ) );
-}
+const buildCss       = helper.buildScss( sources.css, "material-framework", `${dir.destination}/css` );
+buildCss.displayName = "Creating CSS";
+gulp.task( "build:css", gulp.series( cleanCss, buildCss ) );
 
-/**
- * Builds the css files
- *
- * @returns {*}
+/** ----- ----- ----- ----- -----
+ * JS
  */
-function buildCss() {
-	return gulp.src(
-			[
-				"src/scss/material-framework.scss"
-			] )
-			.pipe( plumber() )
-			.pipe( sass() )
-			.pipe( gulp.dest( cssOutputDirectory ) )
-			.pipe( sourcemaps.init() )
-			.pipe( concat( "material-framework.css" ) )
-			.pipe( cssnano( { zindex: false } ) )
-			.pipe( rename( { extname: ".min.css" } ) )
-			.pipe( sourcemaps.write( "maps" ) )
-			.pipe( gulp.dest( cssOutputDirectory ) );
-}
+const buildJs       = helper.browserify(
+	`${dir.source}/js/material-framework.js`,
+	"material-framework",
+	`${dir.destination}/js`
+);
+buildJs.displayName = "Creating Main JS";
+gulp.task( "build:js", gulp.series( cleanJs, buildJs ) );
 
-/**
- *
+/** ----- ----- ----- ----- -----
+ * Fonts
  */
-function buildJs() {
-	return browserify(
-			{
-				entries: [ "src/js/material-framework.js" ]
-			} )
-			.bundle()
-			.pipe( source( "material-framework.js" ) )
-			.pipe( buffer() )
-			.pipe( plumber() )
-			.pipe( gulp.dest( jsOutputDirectory ) )
-			.pipe( sourcemaps.init() )
-			.pipe( uglify() )
-			.pipe( rename( { extname: ".min.js" } ) )
-			.pipe( sourcemaps.write( "maps" ) )
-			.pipe( gulp.dest( jsOutputDirectory ) );
-}
+const copyFonts       = helper.copy( sources.fonts, `${dir.destination}/fonts` );
+copyFonts.displayName = "Copying Fonts";
+gulp.task( "copy:fonts", gulp.series( cleanFonts, copyFonts ) );
 
-function customWatchers() {
-	gulp.watch(
-			"src/scss/**/*.scss",
-			[ "css" ]
-	);
-	gulp.watch(
-			"src/js/**/*.js",
-			[ "js" ]
-	);
-}
+/** ----- ----- ----- ----- -----
+ * Watcher
+ */
+const watchCss       = helper.watch( sources.css, buildCss );
+watchCss.displayName = "Watching CSS Files";
+const watchJs        = helper.watch( sources.js, buildJs );
+watchJs.displayName  = "Watching JS Files";
+gulp.task( "watch:css", watchCss );
+gulp.task( "watch:js", watchJs );
+gulp.task( "watch", gulp.parallel( watchCss, watchJs ) );
 
-gulp.task( "clean:css", cleanCss );
-gulp.task( "css", [ "clean:css" ], buildCss );
-gulp.task( "clean:js", cleanJs );
-gulp.task( "js", [ "clean:js" ], buildJs );
-gulp.task( "watch", [ "default" ], customWatchers );
-gulp.task( "default", [ "css", "js" ] );
+/** ----- ----- ----- ----- -----
+ * Build
+ */
+gulp.task( "default", gulp.series( clean, gulp.parallel( buildCss, buildJs, copyFonts ) ) );
